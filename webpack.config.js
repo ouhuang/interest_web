@@ -1,5 +1,6 @@
 const path = require('path');
-const htmlWebpachPlugin = require('html-webpack-plugin')
+const htmlWebpachPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
     entry: './src/main.js', //入口
@@ -11,6 +12,9 @@ module.exports = {
         new htmlWebpachPlugin({
             template: './public/index.html',
             filename: 'index.html'
+        }),
+        new ExtractTextPlugin({
+            filename: 'css/build.css'
         })
     ], // 生成index.html 并自己引用 build.js
 
@@ -28,7 +32,42 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader'
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: () => [
+                                require('autoprefixer'),
+                                require('precss'),
+                                require('postcss-flexbugs-fixes')
+                            ]
+                        }
+
+                    }
+                ]
+            },
+            {
+                test: [/\.gif$/, /\.jpe?g$/, /\.png$/],
+                loader: 'url-loader',
+                options: {
+                    limit: 10000, //1w字节以下大小的图片会自动转成base64
+                }
+            },
+            {
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: "css-loader"
+                })
             },
 
         ]
