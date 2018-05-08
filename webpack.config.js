@@ -25,7 +25,12 @@ module.exports = {
             {
                 test: /\.js$/, //匹配要处理的文件，正则匹配以.js结尾
                 loader: 'babel-loader'//使用加载器的名称
-            }
+            },
+            {
+                test: /\.css$/,
+                loader: 'style-loader!css-loader'
+            },
+
         ]
     }
 }
