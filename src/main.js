@@ -3,6 +3,12 @@
 import './css/index.css'
 import React from 'react'
 import ReactDom from 'react-dom'
-import App from "./views/app";
+import App from "./app";
+import { hot } from 'react-hot-loader';
 
-ReactDom.render(<App />, document.getElementById('app'))
+
+
+ReactDom.render(
+    <App />, document.getElementById('app'))
+
+hot(module)(App)
