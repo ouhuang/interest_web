@@ -9,15 +9,15 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin'); // css 
 
 process.env.NODE_ENV = 'production';
 const common = require('./webpack.common');
-const { build } = require('./index.js')
+const { build, assetsPath } = require('./index.js')
 
 const prodWebpackConfig = merge(common, {
     mode: "production",
     output: {
         path: build.assetsRoot,
         publicPath: build.assetsPublicPath,
-        filename: 'js/[name].[chunkhash].js',
-        chunkFilename: 'js/[id].[chunkhash].js'
+        filename: assetsPath('js/[name].[chunkhash].js'),
+        chunkFilename: assetsPath('js/[id].[chunkhash].js')
     },
     devtool: build.productionSourceMap ? build.devtool : false,
     plugins: [
@@ -34,7 +34,7 @@ const prodWebpackConfig = merge(common, {
                 removeAttributeQuotes: true //使用仅包含空白的值删除所有属性
             }
         }),
-        new CleanWebpackPlugin(['dist'], {
+        new CleanWebpackPlugin([build.assetsSubDirectory], {
             root: build.assetsRoot
         }),
         new webpack.HashedModuleIdsPlugin(),
@@ -53,6 +53,6 @@ const prodWebpackConfig = merge(common, {
 
 
 module.exports = () => {
-    console.log(build.index)
+    console.log(assetsPath('1'));
     return prodWebpackConfig
 }

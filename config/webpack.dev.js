@@ -8,7 +8,7 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 
 process.env.NODE_ENV = 'development';
 const common = require('./webpack.common');
-const { dev } = require('./index.js')
+const { dev, createNotifierCallback } = require('./index.js')
 
 const devWebpackConfig = merge(common, {
     mode: 'development',
@@ -63,7 +63,7 @@ module.exports = new Promise((resolve, reject) => {
                 compilationSuccessInfo: {
                     messages: [`server run in  http://${devWebpackConfig.devServer.host}:${port}`],
                 },
-                onErrors: dev.createNotifierCallback()
+                onErrors: createNotifierCallback()
             }))
             resolve(devWebpackConfig)
         }

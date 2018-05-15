@@ -18,6 +18,9 @@ module.exports = {
         filename: '[name].js',
         publicPath: config[mode].assetsPublicPath
     },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js', '.json']
+    },
     module: {
         rules: [
             {
@@ -53,8 +56,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: path.posix.join(config[mode].assetsSubDirectory,
-                        'img/[name].[hash:7].[ext]')
+                    name: config.assetsPath('img/[name].[hash:7].[ext]')
                 }
             },
             {
@@ -62,8 +64,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: path.posix.join(config[mode].assetsSubDirectory,
-                        'media/[name].[hash:7].[ext]')
+                    name: config.assetsPath('media/[name].[hash:7].[ext]')
                 }
             },
             {
@@ -71,19 +72,16 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: path.posix.join(config[mode].assetsSubDirectory,
-                        'fonts/[name].[hash:7].[ext]')
+                    name: config.assetsPath('fonts/[name].[hash:7].[ext]')
                 }
             }
         ]
     },
-    resolve: {
-        extensions: ['.tsx', '.ts', '.js', '.json']
-    },
+
     plugins: [
         new MiniCssExtractPlugin({
-            filename: devMode ? '[name].css' : 'css/[name].[hash].css',
-            chunkFilename: devMode ? '[id].css' : 'css/[id].[hash].css',
+            filename: devMode ? '[name].css' : config.assetsPath('css/[name].[hash].css'),
+            chunkFilename: devMode ? '[id].css' : config.assetsPath('css/[id].[hash].css'),
         }),
         new ProgressBarPlugin(
             {
@@ -94,7 +92,7 @@ module.exports = {
             {
                 from: path.resolve(__dirname, '../public'), // 定义要拷贝的源目录 
                 to: config[mode].assetsSubDirectory,  //  定义要拷贝到的目标目录
-                ignore: ['indax.html']//忽略拷贝指定的文件  可以用模糊匹配
+                ignore: ['index.html']//忽略拷贝指定的文件  可以用模糊匹配
             }
         ])
     ],
