@@ -13,7 +13,11 @@
     "build": "webpack --config config/webpack.prod.js"
   },
   "homepage": "https://github.com/Ouhuang/interest_web#readme",
-  "keywords": [],
+  "keywords": [
+    "react",
+    "webpack",
+    "ts"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {

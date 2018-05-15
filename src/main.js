@@ -6,7 +6,7 @@ import ReactDom from 'react-dom'
 import App from "./app";
 import { hot } from 'react-hot-loader';
 
-
+console.log(1)
 
 ReactDom.render(
     <App />, document.getElementById('app'))
