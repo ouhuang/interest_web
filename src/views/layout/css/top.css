@@ -1,0 +1,16 @@
+.top {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: sticky;
+    top: 10px;
+    background: rgba(255, 255, 255, .5);
+    border: 1px solid #666;
+    height: 50px;
+    
+    span {
+        color: #ccc;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+}

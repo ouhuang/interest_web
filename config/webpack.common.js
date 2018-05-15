@@ -24,11 +24,6 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
-                include: [path.resolve(__dirname, '../src')],
-                use: 'babel-loader'
-            },
-            {
                 test: /\.tsx?$/,
                 use: [{
                     loader: 'ts-loader',  //使用 ts-loader 时，设置 happyPackMode: true / transpileOnly: true。
@@ -37,14 +32,19 @@ module.exports = {
                         happyPackMode: true
                     }
                 }],
-
+            },
+            {
+                test: /\.jsx?$/,
+                include: [path.resolve(__dirname, '../src')],
+                use: 'babel-loader'
             },
             {
                 test: /\.css$/,
                 use: [
                     // 在开发环境使用 style-loader
                     devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    "css-loader"
+                    "css-loader",
+                    "postcss-loader"
                 ],
             },
             {

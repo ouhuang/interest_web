@@ -25,7 +25,7 @@ const prodWebpackConfig = merge(common, {
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new HtmlWebpackPlugin({
-            template: './public/index.html',
+            template: 'public/index.html',
             filename: 'index.html',
             inject: true,
             minify: { //压缩index.html
@@ -53,6 +53,5 @@ const prodWebpackConfig = merge(common, {
 
 
 module.exports = () => {
-    console.log(assetsPath('1'));
     return prodWebpackConfig
 }

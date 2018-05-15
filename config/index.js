@@ -28,7 +28,7 @@ const config = {
         assetsSubDirectory: 'static',
         assetsPublicPath: '',
         productionSourceMap: true,
-        devtool: '#source-map',
+        devtool: 'source-map',
         productionGzip: false,
         productionGzipExtensions: ['js', 'css'],
         bundleAnalyzerReport: process.env.npm_config_report
