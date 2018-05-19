@@ -29,7 +29,7 @@ const devWebpackConfig = merge(common, {
         overlay: dev.errorOverlay //当出现编译错误或警告时，在浏览器中显示全屏覆盖。
             ? { warnings: false, errors: true }
             : false,
-        proxy: dev.proxyTable,
+        proxy: dev.proxy,
         publicPath: dev.assetsPublicPath,//此路径下的打包文件可在浏览器中访问
         quiet: dev.quiet //启用 quiet 后，除了初始启动信息之外的任何内容都不会被打印到控制台
     },

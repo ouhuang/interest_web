@@ -1,16 +1,24 @@
 {
     "compilerOptions": {
         "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
         "outDir": "./dist/",
         "noImplicitAny": true,
         "sourceMap": true,
         "module": "esnext",
         "target": "es5",
-        "jsx": "react",
-        "allowJs": true
+        "jsx": "preserve",
+        "allowJs": true,
+        "lib": [
+            "es2015",
+            "dom"
+        ],
     },
     "include": [
         "src/*.ts",
         "src/*.tsx"
+    ],
+    "types": [
+        "typePatches"
     ]
 }

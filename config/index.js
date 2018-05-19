@@ -5,17 +5,23 @@ const path = require('path');
 
 const config = {
     dev: {
-
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         host: 'localhost',
-        port: 8080,
-        proxyTable: {},
+        port: 8000,
+        proxy: {
+            "/api": {
+                target: "http://localhost:8080/emm/",
+                pathRewrite: {
+                    "^/api": ""
+                }
+            }
+        },
         autoOpenBrowser: false,
         errorOverlay: true,
         notifyOnErrors: true,
         poll: false,
-        devtool: 'cheap-module-eval-source-map',
+        devtool: 'inline-source-map',
         cacheBusting: true,
         cssSourceMap: true,
         quiet: true,

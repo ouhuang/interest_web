@@ -19,19 +19,20 @@ module.exports = {
         publicPath: config[mode].assetsPublicPath
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js', '.json']
+        extensions: ['.tsx', '.ts', '.js', '.jsx', '.json']
     },
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
-                use: [{
-                    loader: 'ts-loader',  //使用 ts-loader 时，设置 happyPackMode: true / transpileOnly: true。
-                    options: {
-                        transpileOnly: true,
-                        happyPackMode: true
-                    }
-                }],
+                use: [
+                    {
+                        loader: 'ts-loader',  //使用 ts-loader 时，设置 happyPackMode: true / transpileOnly: true。
+                        options: {
+                            transpileOnly: true,
+                            happyPackMode: true
+                        }
+                    }],
             },
             {
                 test: /\.jsx?$/,
@@ -83,6 +84,9 @@ module.exports = {
             filename: devMode ? '[name].css' : config.assetsPath('css/[name].[hash].css'),
             chunkFilename: devMode ? '[id].css' : config.assetsPath('css/[id].[hash].css'),
         }),
+        new webpack.ProvidePlugin({
+            Fetch: path.resolve(__dirname, '../src/fetch/index.js')
+        }),
         new ProgressBarPlugin(
             {
                 format: (devMode ? '  启动中' : '  打包中') + ' [:bar] ' + chalk.green.bold(':percent'),
@@ -91,7 +95,7 @@ module.exports = {
         new CopyWebpackPlugin([
             {
                 from: path.resolve(__dirname, '../public'), // 定义要拷贝的源目录 
-                to: config[mode].assetsSubDirectory,  //  定义要拷贝到的目标目录
+                to: path.resolve(__dirname, '../dist'),  //  to
                 ignore: ['index.html']//忽略拷贝指定的文件  可以用模糊匹配
             }
         ])

@@ -46,8 +46,27 @@ const prodWebpackConfig = merge(common, {
             cssProcessorOptions: build.productionSourceMap
                 ? { safe: true, map: { inline: false } }
                 : { safe: true }
+        }),
+        new webpack.optimize.SplitChunksPlugin({
+            chunks: "async",
+            minSize: 30000,
+            minChunks: 1,
+            maxAsyncRequests: 5,
+            maxInitialRequests: 3,
+            automaticNameDelimiter: '~',
+            name: true,
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true
+                }
+            }
         })
-        //CommonsChunkPlugin 4移除，有时间看一下新的
     ]
 })
 
