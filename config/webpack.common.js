@@ -6,6 +6,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin'); //进度条
 const CopyWebpackPlugin = require('copy-webpack-plugin'); //静态资源
 const chalk = require('chalk'); //进度颜色
 const config = require('./index.js');
+const tsImportPluginFactory = require('ts-import-plugin');
 
 const devMode = process.env.NODE_ENV !== 'production'
 const mode = devMode ? 'dev' : 'build'
@@ -30,7 +31,13 @@ module.exports = {
                         loader: 'ts-loader',  //使用 ts-loader 时，设置 happyPackMode: true / transpileOnly: true。
                         options: {
                             transpileOnly: true,
-                            happyPackMode: true
+                            happyPackMode: true,
+                            getCustomTransformers: () => ({ //antd 按需加载
+                                before: [tsImportPluginFactory({
+                                    libraryName: 'antd',
+                                    style: 'css',
+                                })]
+                            })
                         }
                     }],
             },
