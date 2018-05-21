@@ -4,15 +4,16 @@
     "react"
   ],
   "plugins": [
+    "react-hot-loader/babel",
+    "transform-runtime",
+    "syntax-dynamic-import",
     [
       "import",
       {
         "libraryName": "antd",
         "style": "css"
       }
-    ],
-    "react-hot-loader/babel",
-    "transform-runtime",
-    "syntax-dynamic-import"
+    ]
+   
   ]
 }

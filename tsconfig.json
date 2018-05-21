@@ -7,7 +7,7 @@
         "sourceMap": true,
         "module": "esnext",
         "target": "es5",
-        "jsx": "preserve",
+        "jsx": "react",
         "allowJs": true,
         "lib": [
             "es2015",
@@ -19,6 +19,6 @@
         "src/*.tsx"
     ],
     "types": [
-        "typePatches"
+        "./global.d.ts"
     ]
 }
