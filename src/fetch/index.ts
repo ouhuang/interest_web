@@ -2,16 +2,16 @@
  * 封装一下fetch
  */
 
-let baseUrl = process.env.NODE_ENV === "production" ? "./" : "/api/";
+let baseUrl = "/api/";  //本地webpack转发，线上nginx转发
 
 let headers = { "Content-Type": "application/json;charset=UTF-8" };
 
-const get = (url) => fetch(baseUrl + url, {
+const get = (url: string) => fetch(baseUrl + url, {
     headers
 }).then(res => res.ok ? res.json() : console.log(res.status + res.statusText));
 
 
-const post = (url, body, ...args) =>
+const post = (url: string, body?: object) =>
     fetch(baseUrl + url,
         {
             body: JSON.stringify(body),
@@ -22,6 +22,3 @@ const post = (url, body, ...args) =>
             res.ok ? res.json() : console.log(res.status + res.statusText));
 
 export { get, post };
-
-export default (opt) => fetch(opt)
-    .then(res => res.ok ? res.json() : console.log(res.status + res.statusText))

@@ -4,7 +4,7 @@ import * as  _ from 'lodash';
 
 import Top from './views/layout/Top'
 import Main from './views/layout/Main'
-import RouterView from './routes/index'
+import RouterView from './routes'
 
 
 export default class extends React.Component {

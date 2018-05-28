@@ -92,7 +92,7 @@ module.exports = {
             chunkFilename: devMode ? '[id].css' : config.assetsPath('css/[id].[hash].css'),
         }),
         new webpack.ProvidePlugin({
-            Fetch: path.resolve(__dirname, '../src/fetch/index.js')
+            Fetch: path.resolve(__dirname, '../src/fetch/index.ts')
         }),
         new ProgressBarPlugin(
             {

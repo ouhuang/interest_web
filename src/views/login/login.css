@@ -1,0 +1,25 @@
+.login{
+    width: 400px;
+    margin: 100px auto;
+    &>span{
+        margin-bottom: 20px;
+    }
+    p{
+        color: #ccc;
+        font-weight: 700;
+        font-size: 20px
+    }
+}
+
+.register{
+    width: 400px;
+    margin: 100px auto;
+    &>span{
+        margin-bottom: 20px;
+    }
+    p{
+        color: #ccc;
+        font-weight: 700;
+        font-size: 20px
+    }
+}

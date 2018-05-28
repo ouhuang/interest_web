@@ -11,7 +11,7 @@ const config = {
         port: 8000,
         proxy: {
             "/api": {
-                target: "http://localhost:8080/emm/",
+                target: "http://localhost:8080/",
                 pathRewrite: {
                     "^/api": ""
                 }

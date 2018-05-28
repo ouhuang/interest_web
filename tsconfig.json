@@ -2,6 +2,8 @@
     "compilerOptions": {
         "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
         "outDir": "./dist/",
         "noImplicitAny": true,
         "sourceMap": true,
@@ -10,15 +12,15 @@
         "jsx": "react",
         "allowJs": true,
         "lib": [
-            "es2015",
+            "es6",
             "dom"
-        ],
+        ]
     },
     "include": [
         "src/*.ts",
         "src/*.tsx"
     ],
     "types": [
-        "./global.d.ts"
+        "global.d.ts"
     ]
 }
