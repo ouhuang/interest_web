@@ -1,22 +1,34 @@
 import React from 'react'
 import './login.css'
-import { Icon, Input, Button, Alert } from 'antd';
+import { Form, Icon, Input, Button, Alert } from 'antd';
+import { FormComponentProps } from 'antd/lib/form';
+
+
 import * as Fetch from '../../fetch';
 
+const FormItem = Form.Item;
 
 
-export default class extends React.Component<any, any> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            params: {
-                userName: '',
-                loginName: '',
-                passWord: '',
-                email: ''
-            },
-            msg: ''
-        }
+interface State {
+    params: object,
+    msg: string,
+    confirmDirty: boolean,
+    autoCompleteResult: any[]
+}
+class RegistrationForm extends React.Component<FormComponentProps, any> {
+    state: State = {
+        params: {
+            userName: '',
+            loginName: '',
+            passWord: '',
+            email: ''
+        },
+        msg: '',
+        confirmDirty: false,
+        autoCompleteResult: []
+    }
+    handleSubmit = () => {
+
     }
     model = (e?: any) => {
         let key = e.target.attributes['data-model'].value;
@@ -29,7 +41,7 @@ export default class extends React.Component<any, any> {
     }
     register = () => {
         Fetch.post('register', this.state.params).then(data => {
-            this.setState({ msg: data.mag })
+            this.setState({ msg: data.msg })
         })
     }
     focus = (e: any) => {
@@ -38,29 +50,49 @@ export default class extends React.Component<any, any> {
     render() {
         const { model, register, focus } = this;
         const { msg } = this.state;
+        const { getFieldDecorator } = this.props.form;
         return (
-            < div className="register">
+            < Form layout="inline" className="register" onSubmit={this.handleSubmit}>
                 <p>
                     emm 这是注册页面
                 </p>
-                <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                    placeholder="用户名" onChange={model} data-model="userName" />
+
+                <FormItem
+                    label="用户名">
+                    {
+                        getFieldDecorator('user', {
+                            rules: [
+                                { required: true, message: '用户名不能为空' },
+                                { type: 'string', min: 2, message: '用户名长度不能小于2位' },
+                                { type: 'string', max: 12, message: '用户名长度不能大于12位' }
+                            ]
+                        })(
+                            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                placeholder="用户名" onChange={model} data-model="userName" />
+                        )
+                    }
+                </FormItem>
+
                 <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                     type='text' onChange={model} placeholder="账号" data-model="loginName" />
                 <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                    type='text' autocomplete='off' onChange={model} placeholder="密码" data-model="passWord" />
+                    type='text' data-autocomplete='off' onChange={model} placeholder="密码" data-model="passWord" />
                 <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                     type='text' onChange={model} placeholder="邮箱" data-model="email" />
-                {msg &&
+                {
+                    msg &&
                     <Alert
-                        message="Error Text"
-                        description={msg}
+                        message={msg}
                         type="error"
                         closable
-                    />}
-                <Button onClick={register}>注册</Button>
+                    />
+                }
+                <Button type="primary">注册</Button>
 
-            </div >
+            </Form >
         )
     }
 }
+
+
+export default Form.create()(RegistrationForm);
