@@ -57,8 +57,7 @@ class RegistrationForm extends React.Component<FormComponentProps, any> {
                     emm 这是注册页面
                 </p>
 
-                <FormItem
-                    label="用户名">
+                <FormItem>
                     {
                         getFieldDecorator('user', {
                             rules: [
@@ -73,8 +72,23 @@ class RegistrationForm extends React.Component<FormComponentProps, any> {
                     }
                 </FormItem>
 
-                <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                    type='text' onChange={model} placeholder="账号" data-model="loginName" />
+                <FormItem>
+                    {
+                        getFieldDecorator('lock', {
+                            rules: [
+                                { required: true, message: '账号不能为空' },
+                                { type: 'string', min: 2, message: '账号长度不能小于2位' },
+                                { type: 'string', max: 12, message: '账号长度不能大于12位' }
+                            ]
+                        })(
+                            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                type='text' onChange={model} placeholder="账号" data-model="loginName" />
+                        )
+                    }
+                </FormItem>
+
+
+
                 <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                     type='text' data-autocomplete='off' onChange={model} placeholder="密码" data-model="passWord" />
                 <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}

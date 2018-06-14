@@ -1,6 +1,5 @@
 //根模板
 import * as  React from 'react';
-import * as  _ from 'lodash';
 
 import Top from './views/layout/top'
 import Main from './views/layout/main'
