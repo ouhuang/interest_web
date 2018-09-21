@@ -1,13 +1,13 @@
 .top {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     position: sticky;
-    top: 10px;
+    top: 20px;
     background: rgba(255, 255, 255, .5);
     border: 1px solid #666;
     height: 50px;
-    
+    padding-left: 30px;
     span {
         color: #ccc;
         margin-right: 20px;
