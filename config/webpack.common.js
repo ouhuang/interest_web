@@ -51,7 +51,9 @@ module.exports = {
                 use: [
                     // 在开发环境使用 style-loader
                     devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    "css-loader",
+                    {
+                        loader: 'css-loader'
+                    },
                     "postcss-loader"
                 ],
             },

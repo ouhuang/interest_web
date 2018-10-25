@@ -1,0 +1,12 @@
+.gl-tool {
+    ul {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+    }
+
+    li {
+        color: #1890ff;
+        cursor: pointer;
+    }
+}

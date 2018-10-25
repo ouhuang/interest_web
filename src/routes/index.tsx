@@ -5,7 +5,16 @@ import Home from "../views/home/home";
 
 import Test from '../test.jsx' //测试
 
-const router = [
+
+interface Router {
+    path: string,
+    component?: React.ComponentClass,
+    children?: React.ComponentClass,
+    exact?: boolean,
+    childrens?: Router[]
+}
+
+const router: Array<Router> = [
     {
         path: '/',//首页
         component: Home,
@@ -24,10 +33,17 @@ const router = [
         component: Bundle(() => import('../views/sign/register'))
     },
     {
-        path: '/videos',//注册
+        path: '/videos',//视频
         component: Bundle(() => import('../views/videos/video'))
-    }
+    },
+    {
+        path: '/tool',//工具
+        component: Bundle(() => import('../views/tool/tool'))
+    },
 ]
+
+
+const route = (v: Router) => <Route key={v.path} {...v}></Route>
 
 
 
@@ -36,7 +52,7 @@ export default class extends React.Component {
     render() {
         return (
             <Switch>
-                {router.map(v => <Route key={v.path} {...v}></Route>)}
+                {router.map(route)}
             </Switch >
         )
     }
