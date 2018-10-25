@@ -1,0 +1,20 @@
+.gl-mock {
+    .obj {
+        width: 420px;
+        display: flex;
+        justify-content: space-between;
+
+        &>div {
+            display: flex;
+            align-items: center;
+
+            span {
+                margin-right: 10px;
+            }
+
+            input {
+                font-size: 12px;
+            }
+        }
+    }
+}

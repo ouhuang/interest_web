@@ -11,8 +11,9 @@ export default class extends Component<{}, {}, any> {
                 <ul>
                     <li><Link to="/tool/mock"> Mock</Link></li>
                 </ul>
-
-                <Route path="/tool/mock" component={Mock}></Route>
+                <div className="views">
+                    <Route path="/tool/mock" component={Mock}></Route>
+                </div>
             </div>
         )
     }

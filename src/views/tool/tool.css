@@ -1,4 +1,6 @@
 .gl-tool {
+    display: flex;
+
     ul {
         display: flex;
         flex-direction: column;
@@ -8,5 +10,9 @@
     li {
         color: #1890ff;
         cursor: pointer;
+    }
+
+    .views {
+        flex-grow: 1;
     }
 }
