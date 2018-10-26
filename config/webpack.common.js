@@ -20,26 +20,27 @@ module.exports = {
         publicPath: config[mode].assetsPublicPath
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js', '.jsx', '.json']
+        extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
+        alias: {
+            '@': path.resolve(__dirname, '../src')
+        }
     },
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.tsx?$/,
-                use: [
-                    {
-                        loader: 'ts-loader',  //使用 ts-loader 时，设置 happyPackMode: true / transpileOnly: true。
-                        options: {
-                            transpileOnly: true,
-                            happyPackMode: true,
-                            getCustomTransformers: () => ({ //antd 按需加载
-                                before: [tsImportPluginFactory({
-                                    libraryName: 'antd',
-                                    style: 'css',
-                                })]
-                            })
-                        }
-                    }],
+                use: [{
+                    loader: 'ts-loader', //使用 ts-loader 时，设置 happyPackMode: true / transpileOnly: true。
+                    options: {
+                        transpileOnly: true,
+                        happyPackMode: true,
+                        getCustomTransformers: () => ({ //antd 按需加载
+                            before: [tsImportPluginFactory({
+                                libraryName: 'antd',
+                                style: 'css',
+                            })]
+                        })
+                    }
+                }],
             },
             {
                 test: /\.jsx?$/,
@@ -96,18 +97,14 @@ module.exports = {
         new webpack.ProvidePlugin({
             Fetch: path.resolve(__dirname, '../src/fetch/index.ts')
         }),
-        new ProgressBarPlugin(
-            {
-                format: (devMode ? '  启动中' : '  打包中') + ' [:bar] ' + chalk.green.bold(':percent'),
-            }
-        ),
-        new CopyWebpackPlugin([
-            {
-                from: path.resolve(__dirname, '../public'), // 定义要拷贝的源目录 
-                to: path.resolve(__dirname, '../dist'),  //  to
-                ignore: ['index.html']//忽略拷贝指定的文件  可以用模糊匹配
-            }
-        ])
+        new ProgressBarPlugin({
+            format: (devMode ? '  启动中' : '  打包中') + ' [:bar] ' + chalk.green.bold(':percent'),
+        }),
+        new CopyWebpackPlugin([{
+            from: path.resolve(__dirname, '../public'), // 定义要拷贝的源目录 
+            to: path.resolve(__dirname, '../dist'), //  to
+            ignore: ['index.html'] //忽略拷贝指定的文件  可以用模糊匹配
+        }])
     ],
     stats: {
         entrypoints: false,

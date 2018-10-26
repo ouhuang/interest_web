@@ -22,6 +22,7 @@
   "license": "ISC",
   "dependencies": {
     "antd": "^3.5.2",
+    "axios": "^0.18.0",
     "lodash": "^4.17.10",
     "moment": "^2.22.1",
     "react": "^16.3.2",

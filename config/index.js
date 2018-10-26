@@ -11,7 +11,7 @@ const config = {
         port: 8000,
         proxy: {
             "/emm": {
-                target: "http://localhost:8080/",
+                target: "http://localhost:3000",
                 pathRewrite: {
                     "^/emm": ""
                 }
@@ -59,11 +59,13 @@ const utils = {
         }
     },
     assetsPath(_path) {
-        const assetsSubDirectory = process.env.NODE_ENV === 'production'
-            ? config.build.assetsSubDirectory
-            : config.dev.assetsSubDirectory
+        const assetsSubDirectory = process.env.NODE_ENV === 'production' ?
+            config.build.assetsSubDirectory :
+            config.dev.assetsSubDirectory
 
         return path.posix.join(assetsSubDirectory, _path)
     }
 }
-module.exports = { ...config, ...utils };
+module.exports = { ...config,
+    ...utils
+};

@@ -18,7 +18,7 @@
     },
     "include": [
         "src/*.ts",
-        "src/*.tsx"
+        "src/*.tsx", "../interest/app/controller/mock/upload.js"
     ],
     "types": [
         "global.d.ts"

@@ -1,8 +1,30 @@
 .gl-mock {
+    .mock-box {
+        display: flex;
+
+        &>div:first-child {
+            width: 420px;
+        }
+
+        &>div>div {
+            margin-bottom: 15px;
+        }
+
+        .textarea {
+            margin-left: 30px;
+            width: 500px;
+
+            &>div {
+                text-align: right;
+                margin-top: 20px;
+            }
+        }
+    }
+
     .obj {
-        width: 420px;
         display: flex;
         justify-content: space-between;
+
 
         &>div {
             display: flex;
@@ -10,11 +32,24 @@
 
             span {
                 margin-right: 10px;
+                font-size: 13px;
             }
 
             input {
                 font-size: 12px;
             }
+        }
+    }
+
+
+    .submit {
+        margin: 10px 0;
+        text-align: right;
+
+        button {
+            width: 50px;
+            font-size: 12px;
+            margin-left: 20px;
         }
     }
 }

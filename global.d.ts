@@ -1,2 +1,3 @@
 
-declare const Fetch: any;
+
+declare const Fetch: GlobalFetch;
