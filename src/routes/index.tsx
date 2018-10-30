@@ -33,6 +33,10 @@ const router: Array<Router> = [
         component: Bundle(() => import('../views/sign/register'))
     },
     {
+        path: '/book',//电子书
+        component: Bundle(() => import('../views/book/book'))
+    },
+    {
         path: '/videos',//视频
         component: Bundle(() => import('../views/videos/video'))
     },

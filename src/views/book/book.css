@@ -1,0 +1,7 @@
+.gl-book {
+    display: flex;
+
+    &>div {
+        width: 50%;
+    }
+}
