@@ -55,6 +55,7 @@ class RegistrationForm extends React.Component<FormComponentProps, any> {
         {
             name: 'passWord',
             type: 'lock',
+            inputType: 'password',
             placeholder: '密码',
             rules: [
                 { required: true, message: '密码不能为空' },
@@ -85,10 +86,14 @@ class RegistrationForm extends React.Component<FormComponentProps, any> {
         })
     }
     register = () => {
-        console.log(this.state.params)
-        // Fetch.post('register', this.state.params).then(data => {
-        //     this.setState({ msg: data.msg })
-        // })
+        this.props.form.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+                Fetch.post('register', values).then(data => {
+                    this.setState({ msg: data.msg })
+                })
+            }
+        });
+
     }
     render() {
         const { model, register, inputList } = this;
@@ -96,27 +101,27 @@ class RegistrationForm extends React.Component<FormComponentProps, any> {
         const { getFieldDecorator } = this.props.form;
         return (
             <div className="register">
-                < Form layout="inline">
+                < Form layout="inline" className="form">
                     <p>
                         emm 这是注册页面
                     </p>
 
                     {
-                        inputList.map(({ name, rules, placeholder, type }) => (
+                        inputList.map(({ name, rules, placeholder, type, inputType = 'text' }) => (
                             <FormItem key={name} label={placeholder}>
                                 {
                                     getFieldDecorator(name, { rules })(
-                                        <Input prefix={<Icon type={type} style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                            placeholder={placeholder} onChange={e => model(e, name)} />
-                                    )
+                                        <Input
+                                            prefix={<Icon type={type} style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                            placeholder={placeholder}
+                                            autoComplete="none"
+                                            type={inputType}
+                                        />)
                                 }
                             </FormItem>
                         ))
                     }
-                    <br />
-                    <FormItem>
-                        <Button type="primary">注册</Button>
-                    </FormItem>
+
                     {
                         msg &&
                         <Alert
@@ -127,7 +132,10 @@ class RegistrationForm extends React.Component<FormComponentProps, any> {
                     }
 
                 </Form >
-            </div>
+                <div className="btn">
+                    <Button type="primary" onClick={register}>注册</Button>
+                </div>
+            </div >
 
         )
     }

@@ -1,25 +1,50 @@
-.login{
+.login {
     width: 400px;
     margin: 100px auto;
-    &>span{
+
+    &>span {
         margin-bottom: 20px;
     }
-    p{
+
+    p {
         color: #ccc;
         font-weight: 700;
         font-size: 20px
     }
 }
 
-.register{
+.register {
     width: 400px;
     margin: 100px auto;
-    &>span{
-        margin-bottom: 20px;
+
+    .form {
+        &>span {
+            margin-bottom: 20px;
+        }
+
+        &>p {
+            color: #ccc;
+            font-weight: 700;
+            font-size: 20px;
+            margin-left: 30px;
+        }
+
+        &>div {
+            margin-bottom: 12px;
+        }
+
+        .ant-form-explain {
+            font-size: 12px;
+        }
+
+        .ant-form-item-label {
+            width: 100px;
+        }
+
     }
-    p{
-        color: #ccc;
-        font-weight: 700;
-        font-size: 20px
+
+    .btn {
+        margin-top: 10px;
+        text-align: center;
     }
 }
