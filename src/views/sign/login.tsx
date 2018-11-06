@@ -15,7 +15,6 @@ export default class extends React.Component {
     login = () => {
         Fetch.post('login', this.state).then((data: any) => {
             if (data.err) {
-                
             }
         })
 
