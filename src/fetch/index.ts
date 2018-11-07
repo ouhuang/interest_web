@@ -5,10 +5,12 @@ import store from '../store';
 
 let baseUrl = "/emm/";  //本地webpack转发，线上nginx转发
 
+
 let headers = {
     "Content-Type": "application/json;charset=UTF-8",
     "Authorization": store.getState()
 };
+
 
 const get = (url: string) => fetch(baseUrl + url, {
     headers
