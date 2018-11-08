@@ -9,7 +9,8 @@ const commit = (state = states, action) => {
     switch (action.type) {
         case 'SET_TOKEN':
             localStorage.setItem('token', action.token)
-            return action.token;
+            state.token = action.token
+            return state;
         default:
             return state;
     }

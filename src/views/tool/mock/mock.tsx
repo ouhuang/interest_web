@@ -11,14 +11,11 @@ interface inputObj {
     value: string,
 }
 
-
 interface State {
     inputList: inputObj[],
     length: number,
     text: string
 }
-
-
 
 export default class extends Component<any, any> {
     state: State = {

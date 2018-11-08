@@ -18,6 +18,7 @@ interface State {
     confirmDirty: boolean,
     autoCompleteResult: any[]
 }
+
 class RegistrationForm extends React.Component<FormComponentProps, any> {
     state: State = {
         params: {
@@ -77,6 +78,7 @@ class RegistrationForm extends React.Component<FormComponentProps, any> {
     handleSubmit = () => {
 
     }
+
     model = (e: React.ChangeEvent<HTMLInputElement>, key: string) => {
         this.setState({
             params: {
@@ -85,6 +87,7 @@ class RegistrationForm extends React.Component<FormComponentProps, any> {
             }
         })
     }
+
     register = () => {
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (!err) {
@@ -93,8 +96,8 @@ class RegistrationForm extends React.Component<FormComponentProps, any> {
                 })
             }
         });
-
     }
+
     render() {
         const { model, register, inputList } = this;
         const { msg, params } = this.state;
@@ -136,7 +139,6 @@ class RegistrationForm extends React.Component<FormComponentProps, any> {
                     <Button type="primary" onClick={register}>注册</Button>
                 </div>
             </div >
-
         )
     }
 }

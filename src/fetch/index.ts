@@ -8,9 +8,10 @@ let baseUrl = "/emm/";  //本地webpack转发，线上nginx转发
 
 let headers = {
     "Content-Type": "application/json;charset=UTF-8",
-    "Authorization": store.getState()
+    "Authorization": store.getState().token || void 0
 };
 
+console.log(store.getState())
 
 const get = (url: string) => fetch(baseUrl + url, {
     headers
