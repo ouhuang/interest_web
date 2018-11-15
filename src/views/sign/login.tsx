@@ -18,8 +18,10 @@ export default class extends React.Component {
         Fetch.post('login', this.state).then((data: any) => {
             console.log(data)
             if (data.err) {
-                this.setState({ errMsg: data.msg })
+                return this.setState({ errMsg: data.msg })
             }
+
+            
         })
     }
 

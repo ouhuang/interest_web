@@ -11,7 +11,8 @@ const config = {
         port: 8000,
         proxy: {
             "/emm": {
-                target: "http://localhost:3000",
+                // target: "http://localhost:3000",
+                target: "https://emm.red",
                 pathRewrite: {
                     "^/emm": ""
                 }
