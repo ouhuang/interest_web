@@ -42,7 +42,32 @@ let test3 = new test_static()
 console.log(test3.test({ x: 1, y: 3 }))
 
 export default class extends React.Component {
+    componentDidMount() {
+        const handler: ProxyHandler<any> = {
+            construct(t, args) {
+                var a = Object.create([]);
+                return a
+            },
+
+            get(target, name) {
+                console.log(48, target, name)
+                console.log(this)
+                return target[name]
+            },
+
+            set(target, name, val) {
+                target[name] = val;
+                return true
+            }
+        }
+
+        var o = Object.create(null)
+
+        let p = new Proxy(function () { }, handler)
+        new p(1)
+        console.log(p)
+    }
     render() {
-        return <div> 首页</div>
+        return <div> 首页 </div>
     }
 }

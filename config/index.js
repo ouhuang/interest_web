@@ -26,7 +26,6 @@ const config = {
         cacheBusting: true,
         cssSourceMap: true,
         quiet: true,
-
     },
 
     build: {

@@ -8,7 +8,10 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 
 process.env.NODE_ENV = 'development';
 const common = require('./webpack.common');
-const { dev, createNotifierCallback } = require('./index.js')
+const {
+    dev,
+    createNotifierCallback
+} = require('./index.js')
 
 const devWebpackConfig = merge(common, {
     mode: 'development',
@@ -16,21 +19,27 @@ const devWebpackConfig = merge(common, {
     devServer: {
         clientLogLevel: "warning", //屏蔽一些log
         historyApiFallback: { //任意的 404 响应都可能需要被替代为 index.html
-            rewrites: [
-                { from: /.*/, to: path.posix.join('/', 'index.html') }
-            ]
+            rewrites: [{
+                from: /.*/,
+                to: path.posix.join('/', 'index.html')
+            }]
         },
         host: dev.host,
         port: dev.port,
+        https: dev.https,
         contentBase: false, //因为我们使用 CopyWebpackPlugin。
-        compress: true,//一切服务都启用gzip 压缩
+        compress: true, //一切服务都启用gzip 压缩
         hot: true,
         inline: true,
         overlay: dev.errorOverlay //当出现编译错误或警告时，在浏览器中显示全屏覆盖。
-            ? { warnings: false, errors: true }
-            : false,
+            ?
+            {
+                warnings: false,
+                errors: true
+            } :
+            false,
         proxy: dev.proxy,
-        publicPath: dev.assetsPublicPath,//此路径下的打包文件可在浏览器中访问
+        publicPath: dev.assetsPublicPath, //此路径下的打包文件可在浏览器中访问
         quiet: dev.quiet //启用 quiet 后，除了初始启动信息之外的任何内容都不会被打印到控制台
     },
     plugins: [
