@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, HtmlHTMLAttributes } from 'react'
 import flvjs from 'flv.js';
 
 const api = process.env.NODE_ENV === 'development' ? 'emm/' : '';
@@ -8,14 +8,19 @@ export default class extends Component {
         super(props)
     }
 
+    test<T>(params: T): T {
+        return params
+    }
+
     componentDidMount() {
         if (flvjs.isSupported()) {
-            var videoElement = document.getElementById('videoElement');
-            var flvPlayer = flvjs.createPlayer({
+            const videoElement = document.getElementById('videoElement') as HTMLMediaElement;
+            const flvPlayer = flvjs.createPlayer({
                 type: 'flv',
                 isLive: true,
                 url: api + 'rtmp/live?port=1935&app=myapp&stream=test'
             });
+
             flvPlayer.attachMediaElement(videoElement);
             flvPlayer.load();
             flvPlayer.play();
@@ -23,6 +28,10 @@ export default class extends Component {
     }
 
     render() {
-        return <video id="videoElement" ></video>
+        return (
+            <div>
+                <video id="videoElement"></video>
+            </div>
+        )
     }
 }

@@ -11,8 +11,8 @@ const config = {
         port: 8000,
         proxy: {
             "/emm": {
-                // target: "http://localhost:3000",
-                target: "https://emm.red",
+                target: "http://localhost:3000",
+                // target: "https://emm.red",
                 pathRewrite: {
                     "^/emm": ""
                 }
@@ -66,6 +66,7 @@ const utils = {
         return path.posix.join(assetsSubDirectory, _path)
     }
 }
-module.exports = { ...config,
+module.exports = {
+    ...config,
     ...utils
 };
